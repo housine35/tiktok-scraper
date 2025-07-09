@@ -12,6 +12,7 @@ templates = Jinja2Templates(directory="app/templates")
 # Inclure les routes spécifiques au TikTok Scraper
 app.include_router(tiktok_router)  # Supprimer .router
 
+
 # Route pour la page principale du scraper TikTok
 @app.get("/", response_class=HTMLResponse)
 async def tiktok_scraper_page(request: Request):

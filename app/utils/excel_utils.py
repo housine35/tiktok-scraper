@@ -3,17 +3,18 @@ import pandas as pd
 from typing import List, Dict, Optional
 from datetime import datetime
 
+
 def save_to_excel(
     posts: Optional[List[Dict]] = None,
     followers: Optional[List[Dict]] = None,
     following: Optional[List[Dict]] = None,
     user_info: Optional[Dict] = None,
     comments: Optional[List[Dict]] = None,
-    file_name: str = "output.xlsx"
+    file_name: str = "output.xlsx",
 ) -> None:
     """
     Sauvegarde les données TikTok dans un fichier Excel avec plusieurs onglets.
-    
+
     Args:
         posts: Liste des publications TikTok.
         followers: Liste des followers.

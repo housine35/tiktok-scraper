@@ -12,11 +12,12 @@ from app.utils.excel_utils import save_to_excel
 
 router = APIRouter()
 
+
 @router.post("/scrape_tiktok_data/")
 async def scrape_tiktok_data(
     background_tasks: BackgroundTasks,
     tiktok_account: str = Form(...),
-    data_type: list[str] = Form([])
+    data_type: list[str] = Form([]),
 ):
     try:
         # Étape 1 : Extraire le nom d'utilisateur de l'URL TikTok
@@ -29,12 +30,20 @@ async def scrape_tiktok_data(
         print(f"secUid récupéré : {secuid}")
         if "Error" in secuid or "not found" in secuid:
             return JSONResponse(
-                content={"error": f"Erreur lors de la récupération du secUid : {secuid}"},
-                status_code=400
+                content={
+                    "error": f"Erreur lors de la récupération du secUid : {secuid}"
+                },
+                status_code=400,
             )
 
         # Étape 3 : Initialiser les données collectées
-        posts, followers, following_data, user_info, all_comments = None, None, None, None, None
+        posts, followers, following_data, user_info, all_comments = (
+            None,
+            None,
+            None,
+            None,
+            None,
+        )
 
         if "comments" in data_type and "posts" in data_type:
             print("📥 Récupération des publications et des commentaires...")
@@ -71,7 +80,9 @@ async def scrape_tiktok_data(
         file_name = f"{username}_{timestamp}.xlsx"
 
         # Étape 6 : Sauvegarder les données dans un fichier Excel
-        save_to_excel(posts, followers, following_data, user_info, all_comments, file_name)
+        save_to_excel(
+            posts, followers, following_data, user_info, all_comments, file_name
+        )
 
         # Étape 7 : Supprimer le fichier temporaire après le téléchargement
         background_tasks.add_task(os.remove, file_name)
@@ -85,4 +96,7 @@ async def scrape_tiktok_data(
 
     except Exception as e:
         print(f"Erreur capturée : {str(e)}")  # Débogage
-        return JSONResponse(content={"error": f"Erreur lors du traitement des données : {str(e)}"}, status_code=500)
+        return JSONResponse(
+            content={"error": f"Erreur lors du traitement des données : {str(e)}"},
+            status_code=500,
+        )

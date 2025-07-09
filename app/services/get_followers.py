@@ -143,10 +143,14 @@ def fetch_followers(secUid, maxCursor=0, all_followers=None):
     new_minCursor = data.get("minCursor", -1)
     has_more = data.get("hasMore", False)
 
-    print(f"🔄 Pagination : nouveau maxCursor = {new_minCursor}, followers récupérés = {len(all_followers)}")
+    print(
+        f"🔄 Pagination : nouveau maxCursor = {new_minCursor}, followers récupérés = {len(all_followers)}"
+    )
 
     if has_more and new_minCursor != -1:
         # Appel récursif avec le nouveau maxCursor
-        return fetch_followers(secUid, maxCursor=new_minCursor, all_followers=all_followers)
+        return fetch_followers(
+            secUid, maxCursor=new_minCursor, all_followers=all_followers
+        )
     else:
         return all_followers

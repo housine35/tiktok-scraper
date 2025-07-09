@@ -44,7 +44,9 @@ def save_data_to_excel(posts, followers, following, user_info, comments, file_na
             if not following_df.empty:
                 following_df.to_excel(writer, sheet_name="Following", index=False)
             if not comments_df.empty:
-                comments_df.to_excel(writer, sheet_name="Comments & Replies", index=False)  # Nouvelle feuille
+                comments_df.to_excel(
+                    writer, sheet_name="Comments & Replies", index=False
+                )  # Nouvelle feuille
 
         print(f"\n📁 Données sauvegardées avec succès dans {file_name}")
     except Exception as e:

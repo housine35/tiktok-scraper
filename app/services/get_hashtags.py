@@ -3,6 +3,7 @@ import requests
 from app.services.node_call import call_validUrl_js
 import random
 
+
 def build_hashtag_base_url(challengeID, cursor=0):
     """Builds the base URL for the TikTok hashtag endpoint with given challengeID and cursor."""
     return (
@@ -42,6 +43,7 @@ def build_hashtag_base_url(challengeID, cursor=0):
         "&msToken=riqlJPr42AMSGAwHu9g9z5PhCqn3Hzp-CjRpNH8XqPTcwNCehHnQqvP5BAgx7HwkuQfAcVxbttMfK3fGHZvUXYB__GZK7iWaYaItDzaDJxeVock0JIurABWe1b5T30PY61UM"
     ).format(challengeID, cursor)
 
+
 def validate_hashtag_url(challengeID, cursor=0):
     """Builds and signs the hashtag URL, returning the signed URL and user-agent."""
     base_url = build_hashtag_base_url(challengeID, cursor)
@@ -57,6 +59,7 @@ def validate_hashtag_url(challengeID, cursor=0):
     print(f"Error: Invalid response status - {result_json}")
     return None, None
 
+
 def send_request(signed_url, user_agent):
     """Sends a GET request with the signed URL and user-agent, returning JSON response."""
     headers = {"User-Agent": user_agent}
@@ -70,6 +73,7 @@ def send_request(signed_url, user_agent):
     except requests.RequestException as e:
         print(f"❌ Request failed: {e}")
         return None
+
 
 def fetch_hashtag_posts_recursive(challengeID, cursor=0, all_posts=None):
     """Recursively fetches all posts for a hashtag, handling pagination via cursor."""
@@ -101,7 +105,7 @@ def fetch_hashtag_posts_recursive(challengeID, cursor=0, all_posts=None):
             "shareCount": item.get("shareCount", 0),
             "commentCount": item.get("commentCount", 0),
             "likeCount": video_info.get("likeCount", 0),
-            "videoUrl": video_info.get("playAddr", "")
+            "videoUrl": video_info.get("playAddr", ""),
         }
         all_posts.append(post_details)
 
@@ -113,6 +117,7 @@ def fetch_hashtag_posts_recursive(challengeID, cursor=0, all_posts=None):
         return fetch_hashtag_posts_recursive(challengeID, new_cursor, all_posts)
     return all_posts
 
+
 if __name__ == "__main__":
     challenge_id = "959445"  # Hashtag challenge ID
     print("Fetching hashtag posts...\n")
@@ -120,6 +125,8 @@ if __name__ == "__main__":
     if posts:
         print(f"✅ {len(posts)} posts fetched.")
         for post in posts:
-            print(f"📹 @{post['authorUniqueId']} - {post['desc'][:50]}... - {post['playCount']} views")
+            print(
+                f"📹 @{post['authorUniqueId']} - {post['desc'][:50]}... - {post['playCount']} views"
+            )
     else:
         print("❌ No posts fetched.")

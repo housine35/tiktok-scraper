@@ -1,6 +1,7 @@
 import subprocess
 import json
 
+
 def call_validUrl_js(url):
     """
     Appelle validUrl.js avec Node et lui passe 'url' en paramètre.
@@ -11,7 +12,7 @@ def call_validUrl_js(url):
         process = subprocess.run(
             ["node", "/app/app/services/validUrl.js", url],
             capture_output=True,
-            text=True
+            text=True,
         )
         # Si le script Node s'est mal terminé
         if process.returncode != 0:

@@ -163,7 +163,9 @@ def fetch_all_posts(secUid, cursor=0, all_posts=None, user_info=None):
         post_info = {
             "id": item.get("id"),
             "desc": item.get("desc", ""),
-            "createTime": datetime.utcfromtimestamp(item.get("createTime")).strftime("%Y-%m-%d %H:%M:%S"),
+            "createTime": datetime.utcfromtimestamp(item.get("createTime")).strftime(
+                "%Y-%m-%d %H:%M:%S"
+            ),
             "videoUrl": "https://www.tiktok.com/@movedz/video/" + item.get("id"),
             "coverUrl": item.get("video", {}).get("cover"),
             "likeCount": stats.get("diggCount", 0),
@@ -188,7 +190,9 @@ def fetch_all_posts(secUid, cursor=0, all_posts=None, user_info=None):
     has_more = data.get("hasMore", False)
     if has_more and new_cursor != -1:
         # Appel récursif avec le nouveau cursor
-        return fetch_all_posts(secUid, cursor=new_cursor, all_posts=all_posts, user_info=user_info)
+        return fetch_all_posts(
+            secUid, cursor=new_cursor, all_posts=all_posts, user_info=user_info
+        )
     else:
         print(f"✅ {len(all_posts)} posts récupérés.")
         # print(f"ℹ️ Informations utilisateur : {user_info}")

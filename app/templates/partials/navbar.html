@@ -1,0 +1,168 @@
+<nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo/Brand -->
+      <div class="flex-shrink-0 flex items-center">
+        <a href="https://portfolio-hocine-abed.onrender.com/index" class="flex items-center group">
+          <div
+            class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mr-2 group-hover:rotate-12 transition-transform duration-300">
+            <i class="fas fa-code text-white text-sm"></i>
+          </div>
+          <span
+            class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent font-heading">Hocine
+            ABED</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-1">
+        <a href="https://portfolio-hocine-abed.onrender.com/index"
+          class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
+          <span>Home</span>
+        </a>
+        <a href="https://portfolio-hocine-abed.onrender.com/resume"
+          class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 relative group">
+          <span>Resume</span>
+        </a>
+
+        <!-- Dropdown Menu for Projects -->
+        <div class="relative group" id="projects-dropdown">
+          <button
+            class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 flex items-center focus:outline-none"
+            aria-expanded="false" aria-haspopup="true">
+            <span>Projects</span>
+            <svg class="ml-1 w-4 h-4 text-gray-500 group-hover:text-blue-600 transition-transform duration-200"
+              xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown menu -->
+          <div id="projects-menu"
+            class="absolute left-0 hidden mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg z-50 group-focus-within:block group-hover:block">
+            <a href="https://portfolio-hocine-abed.onrender.com/projects"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all duration-150">
+              All Projects
+            </a>
+            <a href="https://portfolio-hocine-abed.onrender.com/jobs/freework"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all duration-150">
+              <img
+                src="https://blakeoliver.com.au/wp-content/uploads/2023/06/vecteezy_linkedin-logo-png-linkedin-icon-transparent-png_18930585_835-1536x1536.png"
+                alt="LinkedIn Logo" class="inline-block w-5 h-5 mr-2"> Find Your Job
+            </a>
+            <a href="https://tiktok-scraper-yt8p.onrender.com/"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-100 hover:text-blue-700 transition-all duration-150">
+              <img src="https://e7.pngegg.com/pngimages/588/462/png-clipart-tiktok-logo-paint-social-media-icons.png"
+                alt="TikTok Logo" class="inline-block w-5 h-5 mr-2"> TikTok Scraper
+            </a>
+          </div>
+        </div>
+
+        <a href="https://portfolio-hocine-abed.onrender.com/contact"
+          class="ml-4 px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-blue-500 to-indigo-600 rounded-md hover:from-blue-600 hover:to-indigo-700 transition-all duration-200 shadow-sm hover:shadow-md">
+          Contact
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+        <button type="button"
+          class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none transition-colors duration-200"
+          aria-controls="mobile-menu" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white">
+      <a href="https://portfolio-hocine-abed.onrender.com/index"
+        class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600 transition-colors duration-150">Home</a>
+      <a href="https://portfolio-hocine-abed.onrender.com/resume"
+        class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600 transition-colors duration-150">Resume</a>
+      <!-- Mobile Projects Dropdown -->
+      <div class="relative">
+        <button
+          class="w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600 transition-colors duration-150 flex items-center"
+          aria-controls="mobile-projects-menu" aria-expanded="false">
+          <span>Projects</span>
+          <svg class="ml-1 w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg(corresponding to mobile projects button)svg>
+        </button>
+        <div class="hidden pl-4" id="mobile-projects-menu">
+          <a href="https://portfolio-hocine-abed.onrender.com/projects"
+            class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600 transition-colors duration-150">All
+            Projects</a>
+          <a href="https://portfolio-hocine-abed.onrender.com/jobs/freework"
+            class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600 transition-colors duration-150 flex items-center">
+            <img
+              src="https://blakeoliver.com.au/wp-content/uploads/2023/06/vecteezy_linkedin-logo-png-linkedin-icon-transparent-png_18930585_835-1536x1536.png"
+              alt="LinkedIn Logo" class="inline-block w-5 h-5 mr-2"> Find Your Job
+          </a>
+          <a href="https://tiktok-scraper-yt8p.onrender.com/"
+            class="block px-3 py-2 text-base font-medium text-gray-700 hover:text-white hover:bg-blue-600 transition-colors duration-150">TikTok
+            Scraper</a>
+        </div>
+      </div>
+      <a href="https://portfolio-hocine-abed.onrender.com/contact"
+        class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-blue-500 to-indigo-600 mt-2">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileMenuButton.addEventListener('click', () => {
+    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+    mobileMenu.classList.toggle('hidden');
+    mobileMenuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+  });
+
+  // Desktop dropdown toggle
+  const projectsDropdown = document.getElementById('projects-dropdown');
+  const projectsMenu = document.getElementById('projects-menu');
+  projectsDropdown.addEventListener('mouseenter', () => {
+    projectsMenu.classList.remove('hidden');
+    projectsDropdown.querySelector('button').setAttribute('aria-expanded', 'true');
+  });
+  projectsDropdown.addEventListener('mouseleave', () => {
+    projectsMenu.classList.add('hidden');
+    projectsDropdown.querySelector('button').setAttribute('aria-expanded', 'false');
+  });
+
+  // Mobile projects dropdown toggle
+  const mobileProjectsButton = document.querySelector('[aria-controls="mobile-projects-menu"]');
+  const mobileProjectsMenu = document.getElementById('mobile-projects-menu');
+  mobileProjectsButton.addEventListener('click', () => {
+    const isExpanded = mobileProjectsButton.getAttribute('aria-expanded') === 'true';
+    mobileProjectsMenu.classList.toggle('hidden');
+    mobileProjectsButton.setAttribute('aria-expanded', !isExpanded);
+  });
+
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!projectsDropdown.contains(e.target)) {
+      projectsMenu.classList.add('hidden');
+      projectsDropdown.querySelector('button').setAttribute('aria-expanded', 'false');
+    }
+    if (!mobileProjectsButton.contains(e.target) && !mobileProjectsMenu.contains(e.target)) {
+      mobileProjectsMenu.classList.add('hidden');
+      mobileProjectsButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

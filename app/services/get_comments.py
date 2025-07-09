@@ -105,7 +105,9 @@ def validate_comment_url(post_id, cursor=0):
         print("Erreur lors de la signature de l'URL des commentaires")
         return None, None
 
-    return result_json["data"]["signed_url"], result_json["data"]["navigator"]["user_agent"]
+    return result_json["data"]["signed_url"], result_json["data"]["navigator"][
+        "user_agent"
+    ]
 
 
 def validate_reply_url(post_id, comment_id, cursor=0):
@@ -119,7 +121,9 @@ def validate_reply_url(post_id, comment_id, cursor=0):
         print(f"Erreur lors de la signature de l'URL des réponses pour {comment_id}")
         return None, None
 
-    return result_json["data"]["signed_url"], result_json["data"]["navigator"]["user_agent"]
+    return result_json["data"]["signed_url"], result_json["data"]["navigator"][
+        "user_agent"
+    ]
 
 
 def extract_comment_details(post_id, comment):
@@ -133,7 +137,9 @@ def extract_comment_details(post_id, comment):
         "userId": comment.get("user", {}).get("uid"),
         "userSecUid": comment.get("user", {}).get("secUid"),
         "userNickname": comment.get("user", {}).get("nickname"),
-        "userAvatar": comment.get("user", {}).get("avatarThumb", {}).get("url_list", [None])[0],
+        "userAvatar": comment.get("user", {})
+        .get("avatarThumb", {})
+        .get("url_list", [None])[0],
         "createTime": comment.get("create_time"),
         "likeCount": comment.get("digg_count", 0),
         "replyCount": comment.get("reply_comment_total", 0),
@@ -204,7 +210,9 @@ def fetch_comments(post_id, cursor=0, all_comments=None):
         comment_details = extract_comment_details(post_id, comment_info)
         if comment_details["replyCount"] > 0:
             print(f"Fetching replies for {comment_details['commentId']}...")
-            comment_details["replies"] = fetch_replies(post_id, comment_details["commentId"])
+            comment_details["replies"] = fetch_replies(
+                post_id, comment_details["commentId"]
+            )
 
         all_comments.append(comment_details)
 

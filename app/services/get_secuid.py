@@ -30,7 +30,9 @@ def get_secuid(tiktok_url):
 
     try:
         # Execute the curl command and capture the output
-        result = subprocess.run(curl_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        result = subprocess.run(
+            curl_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
 
         # Decode the response using 'latin1' to avoid UTF-8 decoding errors (fallback for non-UTF-8 characters)
         response_text = result.stdout.decode("utf-8", errors="replace")
