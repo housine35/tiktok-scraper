@@ -1,0 +1,29 @@
+{
+  "name": "tiktok-scraper",
+  "version": "1.0.0",
+  "description": "A FastAPI web application to scrape TikTok data and save it to Excel files.",
+  "main": "app/services/validUrl.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-playwright": "npx playwright install chromium"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/housine35/tiktok-scraper.git"
+  },
+  "keywords": [
+    "tiktok",
+    "scraper",
+    "fastapi"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/housine35/tiktok-scraper/issues"
+  },
+  "homepage": "https://github.com/housine35/tiktok-scraper#readme",
+  "dependencies": {
+    "playwright": "1.48.1"
+  }
+}

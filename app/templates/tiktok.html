@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New TikTok Scraper Service</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: #7f8c8d;
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-size: 1.2rem;
+      color: #2c3e50;
+      font-weight: 500;
+      text-align: left;
+      display: block;
+    }
+
+    input[type="text"] {
+      padding: 15px;
+      border: 2px solid #dcdde1;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      width: 100%;
+      background-color: #f9f9f9;
+    }
+
+    input[type="text"]:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    }
+
+    .checkbox-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f1f4f9;
+      padding: 12px 15px;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .checkbox-wrapper:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .checkbox-wrapper input[type="checkbox"] {
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+      accent-color: #3498db;
+      cursor: pointer;
+    }
+
+    .checkbox-wrapper label {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #2c3e50;
+    }
+
+    input[type="submit"] {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background: linear-gradient(135deg, #4a00e0, #8e2de2);
+      box-shadow: 0 10px 25px rgba(142, 45, 226, 0.5);
+    }
+
+    a {
+      display: block;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: #3498db;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      font-weight: 500;
+    }
+
+    a:hover {
+      color: #2c3e50;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>New TikTok Scraper</h1>
+    <p>Entrez l'URL TikTok et choisissez les données à extraire :</p>
+    <form action="/scrape_tiktok_data/" method="post">
+      <label for="tiktok_account">TikTok Account URL:</label>
+      <input type="text" id="tiktok_account" name="tiktok_account" placeholder="https://www.tiktok.com/@username"
+        required>
+
+      <!-- Checkboxes section -->
+      <div class="checkbox-group">
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="posts" name="data_type" value="posts">
+          <label for="posts">Posts</label>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="comments" name="data_type" value="comments">
+          <label for="comments">Comments</label>
+        </div>
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="followers" name="data_type" value="followers">
+          <label for="followers">Followers</label>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="following" name="data_type" value="following">
+          <label for="following">Following</label>
+        </div>
+
+
+      </div>
+
+      <input type="submit" value="Scrape TikTok Data">
+    </form>
+
+    <a href="index.html"><i class="fas fa-arrow-left"></i> Retourner à la page d'accueil</a>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const commentsCheckbox = document.getElementById("comments");
+      const postsCheckbox = document.getElementById("posts");
+
+      commentsCheckbox.addEventListener("change", function () {
+        if (commentsCheckbox.checked) {
+          postsCheckbox.checked = true;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+services:
+  tiktok-scraper:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --log-level debug
+    volumes:
+      - ./:/app
+    restart: always
+    container_name: tiktok-scraper
+    ports:
+      - "8000:8000"

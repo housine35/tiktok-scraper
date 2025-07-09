@@ -1,0 +1,22 @@
+
+# Jinja2 template engine for HTML templates
+Jinja2==3.1.2
+
+# HTTP requests for API interaction
+requests==2.31.0
+
+# For environment variable management
+python-dotenv==1.0.0
+
+# Excel handling
+openpyxl==3.1.2
+
+# Utilities for data validation and datetime handling
+pytz==2023.3
+httpx==0.24.1     # For making async HTTP requests
+python-multipart
+fastapi~=0.95.2
+pydantic~=1.10.11
+uvicorn[standard]~=0.22.0
+node
+pandas==2.1.3
