@@ -7,7 +7,7 @@ from lib.XGorgon import XGorgon
 from lib.XArgus import Argus
 from lib.XLadon import Ladon
 
-# Target URL parameters (updated with cursor=60)
+# Target URL parameters (updated wdith cursor=60)
 params = "music_id=7328869241331370798&cursor=60&count=20&type=0&video_cover_shrink=372_495&from_group_id=7522286854184488247&could_lazy_loading=1&experiment_params=%7B%22detail_page_need_standardize_text%22%3A%201%2C%20%22detail_page_need_friend_tag%22%3A%201%7D&device_platform=android&os=android&ssmix=a&_rticket=1752156062782&cdid=a08bb181-6e61-4678-a146-71230db6d140&channel=googleplay&aid=1233&app_name=musical_ly&version_code=400703&version_name=40.7.3&manifest_version_code=2024007030&update_version_code=2024007030&ab_version=40.7.3&resolution=1440*2891&dpi=560&device_type=sdk_gphone64_x86_64&device_brand=google&language=en&os_api=36&os_version=16&ac=wifi&is_pad=0&app_type=normal&sys_region=US&last_install_time=1752144253&mcc_mnc=310260&timezone_name=Europe%2FParis&carrier_region_v2=310&app_language=en&carrier_region=US&ac2=wifi&uoo=0&op_region=US&timezone_offset=3600&build_number=40.7.3&host_abi=arm64-v8a&locale=en®ion=US&ts=1752156067&iid=7525402045219161870&device_id=7525401655916135949&openudid=f12cd9259c6d7bde"
 
 # Cookie and X-Tt-Token (must be updated with a new capture from Proxyman if expired)
