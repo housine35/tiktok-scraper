@@ -12,6 +12,7 @@ from app.utils.excel_utils import save_to_excel
 
 router = APIRouter()
 
+
 @router.post("/scrape_tiktok_data/")
 async def scrape_tiktok_data(
     background_tasks: BackgroundTasks,

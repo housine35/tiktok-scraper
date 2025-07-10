@@ -11,6 +11,7 @@ USER_AGENT = (
 # msToken (replace with a valid token from your browser)
 MSTOKEN = "G1lr_8nRB3udnK_fFzgBD7sxvc0PK6Osokd1IJMaVPVcoB4mwSW-D6MQjTdoJ2o20PLt_MWNgtsAr095wVSShdmn_XVFS34bURvakVglDyWAHncoV_jVJCRdiJRdbJBi_E_KD_G8vpFF9-aOaJrk"
 
+
 def build_comment_base_url(post_id, cursor=0):
     """
     Constructs the base URL for fetching comments of a post.
@@ -43,6 +44,7 @@ def build_comment_base_url(post_id, cursor=0):
         "&screen_width=2560"
         "&webcast_language=en"
     )
+
 
 def build_reply_base_url(post_id, comment_id, cursor=0):
     """
@@ -78,6 +80,7 @@ def build_reply_base_url(post_id, comment_id, cursor=0):
         "&webcast_language=en"
     )
 
+
 def validate_comment_url(post_id, cursor=0):
     """
     Generates a signed URL for fetching comments.
@@ -88,7 +91,10 @@ def validate_comment_url(post_id, cursor=0):
         print(f"Error signing comment URL: {result_json}")
         return None, None
 
-    return result_json["data"]["signed_url"], result_json["data"]["navigator"]["user_agent"]
+    return result_json["data"]["signed_url"], result_json["data"]["navigator"][
+        "user_agent"
+    ]
+
 
 def validate_reply_url(post_id, comment_id, cursor=0):
     """
@@ -100,7 +106,10 @@ def validate_reply_url(post_id, comment_id, cursor=0):
         print(f"Error signing reply URL for comment {comment_id}: {result_json}")
         return None, None
 
-    return result_json["data"]["signed_url"], result_json["data"]["navigator"]["user_agent"]
+    return result_json["data"]["signed_url"], result_json["data"]["navigator"][
+        "user_agent"
+    ]
+
 
 def extract_comment_details(post_id, comment):
     """
@@ -113,12 +122,15 @@ def extract_comment_details(post_id, comment):
         "userId": comment.get("user", {}).get("uid"),
         "userSecUid": comment.get("user", {}).get("secUid"),
         "userNickname": comment.get("user", {}).get("nickname"),
-        "userAvatar": comment.get("user", {}).get("avatarThumb", {}).get("url_list", [None])[0],
+        "userAvatar": comment.get("user", {})
+        .get("avatarThumb", {})
+        .get("url_list", [None])[0],
         "createTime": comment.get("create_time"),
         "likeCount": comment.get("digg_count", 0),
         "replyCount": comment.get("reply_comment_total", 0),
-        "replies": []
+        "replies": [],
     }
+
 
 def fetch_replies(post_id, comment_id, tiktok_account, cursor=0, all_replies=None):
     """
@@ -135,10 +147,7 @@ def fetch_replies(post_id, comment_id, tiktok_account, cursor=0, all_replies=Non
     # Construct Referer using tiktok_account and post_id
     referer = f"{tiktok_account.rstrip('/')}/{post_id}"
     print(referer)
-    headers = {
-        "User-Agent": user_agent or USER_AGENT,
-        "Referer": referer
-    }
+    headers = {"User-Agent": user_agent or USER_AGENT, "Referer": referer}
 
     try:
         response = requests.get(signed_url, headers=headers)
@@ -162,7 +171,9 @@ def fetch_replies(post_id, comment_id, tiktok_account, cursor=0, all_replies=Non
         has_more = data.get("has_more", 0)
         if has_more:
             next_cursor = data.get("cursor", cursor + 20)
-            return fetch_replies(post_id, comment_id, tiktok_account, next_cursor, all_replies)
+            return fetch_replies(
+                post_id, comment_id, tiktok_account, next_cursor, all_replies
+            )
 
     except requests.RequestException as e:
         print(f"Reply request error: {e}")
@@ -172,6 +183,7 @@ def fetch_replies(post_id, comment_id, tiktok_account, cursor=0, all_replies=Non
         return all_replies
 
     return all_replies
+
 
 def fetch_comments(post_id, tiktok_account, cursor=0, all_comments=None):
     """
@@ -188,10 +200,7 @@ def fetch_comments(post_id, tiktok_account, cursor=0, all_comments=None):
     # Construct Referer using tiktok_account and post_id
     referer = f"{tiktok_account.rstrip('/')}/video/{post_id}"
     print(referer)
-    headers = {
-        "User-Agent": user_agent or USER_AGENT,
-        "Referer": referer
-    }
+    headers = {"User-Agent": user_agent or USER_AGENT, "Referer": referer}
 
     try:
         response = requests.get(signed_url, headers=headers)
@@ -211,14 +220,18 @@ def fetch_comments(post_id, tiktok_account, cursor=0, all_comments=None):
             has_more = data.get("has_more", 0)
             if has_more:
                 next_cursor = data.get("cursor", cursor + 20)
-                return fetch_comments(post_id, tiktok_account, next_cursor, all_comments)
+                return fetch_comments(
+                    post_id, tiktok_account, next_cursor, all_comments
+                )
             return all_comments
 
         for comment_info in comment_list:
             comment_details = extract_comment_details(post_id, comment_info)
             if comment_details["replyCount"] > 0:
                 print(f"Fetching replies for comment {comment_details['commentId']}...")
-                comment_details["replies"] = fetch_replies(post_id, comment_details["commentId"], tiktok_account)
+                comment_details["replies"] = fetch_replies(
+                    post_id, comment_details["commentId"], tiktok_account
+                )
 
             all_comments.append(comment_details)
 
@@ -236,6 +249,7 @@ def fetch_comments(post_id, tiktok_account, cursor=0, all_comments=None):
         return all_comments
 
     return all_comments
+
 
 """ # Example usage
 if __name__ == "__main__":
