@@ -75,11 +75,6 @@ def fetch_following(secUid, minCursor=0, all_following=None):
     Récupère récursivement la liste des utilisateurs suivis par l'utilisateur TikTok en utilisant requests.
     """
 
-    proxy = (
-        "http://sp42jw6ggi:o~zA4ntN53ZMkyq0lk@isp.smartproxy.com:10000"  # Format proxy
-    )
-    proxies = {"http": proxy, "https": proxy}  # Configuration des proxies pour requests
-
     if all_following is None:
         all_following = []
 
@@ -93,8 +88,8 @@ def fetch_following(secUid, minCursor=0, all_following=None):
     headers = {"User-Agent": user_agent}
 
     try:
-        # Envoyer la requête GET
-        response = requests.get(signed_url, headers=headers, proxies=proxies)
+        # Envoyer la requête GET sans utiliser de proxy
+        response = requests.get(signed_url, headers=headers)
 
         if response.status_code != 200:
             print(f"❌ Erreur HTTP {response.status_code} : {response.text}")
@@ -147,6 +142,7 @@ def fetch_following(secUid, minCursor=0, all_following=None):
         )
     else:
         return all_following
+
 
 
 """ if __name__ == "__main__":
