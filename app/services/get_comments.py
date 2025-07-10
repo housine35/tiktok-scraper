@@ -2,133 +2,109 @@ import requests
 import json
 from app.services.node_call import call_validUrl_js
 
+# User-Agent from GitHub recommendation
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.53"
+)
+
+# msToken (replace with a valid token from your browser)
+MSTOKEN = "G1lr_8nRB3udnK_fFzgBD7sxvc0PK6Osokd1IJMaVPVcoB4mwSW-D6MQjTdoJ2o20PLt_MWNgtsAr095wVSShdmn_XVFS34bURvakVglDyWAHncoV_jVJCRdiJRdbJBi_E_KD_G8vpFF9-aOaJrk"
 
 def build_comment_base_url(post_id, cursor=0):
     """
-    Construit l'URL de base pour récupérer les commentaires d'un post.
+    Constructs the base URL for fetching comments of a post.
     """
     return (
         f"https://www.tiktok.com/api/comment/list/"
-        "?WebIdLastTime=1738575538"
+        f"?aweme_id={post_id}"
+        f"&cursor={cursor}"
+        "&count=20"
+        f"&msToken={MSTOKEN}"
         "&aid=1988"
         "&app_language=ja-JP"
         "&app_name=tiktok_web"
-        f"&aweme_id={post_id}"
-        "&browser_language=fr"
+        "&browser_language=en-US"
         "&browser_name=Mozilla"
         "&browser_online=true"
-        "&browser_platform=MacIntel"
-        "&browser_version=5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F123.0.0.0+Safari%2F537.36+Edg%2F123.0.0.0"
+        "&browser_platform=Win32"
+        "&browser_version=5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F110.0.0.0+Safari%2F537.36+Edg%2F110.0.1587.63"
         "&channel=tiktok_web"
         "&cookie_enabled=true"
-        "&count=20"
-        "&current_region=JP"
-        f"&cursor={cursor}"
-        "&data_collection_enabled=true"
-        "&device_id=7467116746588145174"
+        "¤t_region=JP"
+        "&device_id=7165118680723998214"
         "&device_platform=web_pc"
-        "&enter_from=tiktok_web"
-        "&focus_state=true"
-        "&fromWeb=1"
         "&from_page=video"
-        "&history_len=3"
-        "&is_fullscreen=true"
-        "&is_non_personalized=false"
-        "&is_page_visible=true"
-        "&odinId=6624247328809172997"
-        "&os=mac"
-        "&priority_region=FR"
+        "&os=windows"
+        "&priority_region=US"
         "&referer="
-        "&region=FR"
-        "&screen_height=1080"
-        "&screen_width=1920"
-        "&tz_name=Europe%2FParis"
-        "&user_is_login=true"
-        "&webcast_language=fr"
-        "&msToken=riqlJPr42AMSGAwHu9g9z5PhCqn3Hzp-CjRpNH8XqPTcwNCehHnQqvP5BAgx7HwkuQfAcVxbttMfK3fGHZvUXYB__GZK7iWaYaItDzaDJxeVock0JIurABWe1b5T30PY61UM"
+        "®ion=US"
+        "&screen_height=1440"
+        "&screen_width=2560"
+        "&webcast_language=en"
     )
-
 
 def build_reply_base_url(post_id, comment_id, cursor=0):
     """
-    Construit l'URL de base pour récupérer les réponses d'un commentaire en utilisant post_id, comment_id et cursor.
+    Constructs the base URL for fetching replies to a comment.
     """
     return (
         "https://www.tiktok.com/api/comment/list/reply/"
-        "?WebIdLastTime=1738575538"
+        f"?aweme_id={post_id}"
+        f"&comment_id={comment_id}"
+        f"&cursor={cursor}"
+        "&count=20"
+        f"&msToken={MSTOKEN}"
         "&aid=1988"
         "&app_language=ja-JP"
         "&app_name=tiktok_web"
-        "&browser_language=fr"
+        "&browser_language=en-US"
         "&browser_name=Mozilla"
         "&browser_online=true"
-        "&browser_platform=MacIntel"
+        "&browser_platform=Win32"
+        "&browser_version=5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F110.0.0.0+Safari%2F537.36+Edg%2F110.0.1587.63"
         "&channel=tiktok_web"
         "&cookie_enabled=true"
-        "&current_region=JP"
-        f"&cursor={cursor}"
-        "&data_collection_enabled=true"
-        "&device_id=7467116746588145174"
+        "¤t_region=JP"
+        "&device_id=7165118680723998214"
         "&device_platform=web_pc"
-        "&enter_from=tiktok_web"
-        "&focus_state=true"
-        "&fromWeb=1"
         "&from_page=video"
-        "&history_len=3"
-        "&is_page_visible=true"
-        "&odinId=6624247328809172997"
-        "&os=mac"
-        "&priority_region=FR"
+        "&os=windows"
+        "&priority_region=US"
         "&referer="
-        "&region=FR"
-        "&screen_height=1080"
-        "&screen_width=1920"
-        "&tz_name=Europe%2FParis"
-        "&user_is_login=true"
-        "&webcast_language=fr"
-        "&browser_version=5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F123.0.0.0+Safari%2F537.36+Edg%2F123.0.0.0"
-        f"&comment_id={comment_id}"
-        "&count=20"
-        "&is_fullscreen=false"
-        f"&item_id={post_id}"
-        "&msToken=riqlJPr42AMSGAwHu9g9z5PhCqn3Hzp-CjRpNH8XqPTcwNCehHnQqvP5BAgx7HwkuQfAcVxbttMfK3fGHZvUXYB__GZK7iWaYaItDzaDJxeVock0JIurABWe1b5T30PY61UM"
+        "®ion=ALL"
+        "&screen_height=1440"
+        "&screen_width=2560"
+        "&webcast_language=en"
     )
-
 
 def validate_comment_url(post_id, cursor=0):
     """
-    Génère l'URL signée pour récupérer les commentaires.
+    Generates a signed URL for fetching comments.
     """
     base_url = build_comment_base_url(post_id, cursor)
     result_json = call_validUrl_js(base_url)
     if not result_json or result_json.get("status") != "ok":
-        print("Erreur lors de la signature de l'URL des commentaires")
+        print(f"Error signing comment URL: {result_json}")
         return None, None
 
-    return result_json["data"]["signed_url"], result_json["data"]["navigator"][
-        "user_agent"
-    ]
-
+    return result_json["data"]["signed_url"], result_json["data"]["navigator"]["user_agent"]
 
 def validate_reply_url(post_id, comment_id, cursor=0):
     """
-    Génère l'URL signée pour récupérer les réponses à un commentaire spécifique.
+    Generates a signed URL for fetching replies to a comment.
     """
     base_url = build_reply_base_url(post_id, comment_id, cursor)
     result_json = call_validUrl_js(base_url)
-
     if not result_json or result_json.get("status") != "ok":
-        print(f"Erreur lors de la signature de l'URL des réponses pour {comment_id}")
+        print(f"Error signing reply URL for comment {comment_id}: {result_json}")
         return None, None
 
-    return result_json["data"]["signed_url"], result_json["data"]["navigator"][
-        "user_agent"
-    ]
-
+    return result_json["data"]["signed_url"], result_json["data"]["navigator"]["user_agent"]
 
 def extract_comment_details(post_id, comment):
     """
-    Extrait les détails d'un commentaire.
+    Extracts details from a comment.
     """
     return {
         "postId": post_id,
@@ -137,97 +113,142 @@ def extract_comment_details(post_id, comment):
         "userId": comment.get("user", {}).get("uid"),
         "userSecUid": comment.get("user", {}).get("secUid"),
         "userNickname": comment.get("user", {}).get("nickname"),
-        "userAvatar": comment.get("user", {})
-        .get("avatarThumb", {})
-        .get("url_list", [None])[0],
+        "userAvatar": comment.get("user", {}).get("avatarThumb", {}).get("url_list", [None])[0],
         "createTime": comment.get("create_time"),
         "likeCount": comment.get("digg_count", 0),
         "replyCount": comment.get("reply_comment_total", 0),
-        "replies": [],
+        "replies": []
     }
 
-
-def fetch_replies(post_id, comment_id, cursor=0, all_replies=None):
+def fetch_replies(post_id, comment_id, tiktok_account, cursor=0, all_replies=None):
     """
-    Récupère récursivement les réponses d'un commentaire.
+    Recursively fetches replies to a comment.
     """
     if all_replies is None:
         all_replies = []
 
     signed_url, user_agent = validate_reply_url(post_id, comment_id, cursor)
     if not signed_url:
+        print(f"Failed to get signed URL for replies of comment {comment_id}")
         return all_replies
 
-    headers = {"User-Agent": user_agent}
+    # Construct Referer using tiktok_account and post_id
+    referer = f"{tiktok_account.rstrip('/')}/{post_id}"
+    print(referer)
+    headers = {
+        "User-Agent": user_agent or USER_AGENT,
+        "Referer": referer
+    }
 
     try:
         response = requests.get(signed_url, headers=headers)
+        print(f"Reply fetch status for comment {comment_id}: {response.status_code}")
+        print(f"Reply fetch response: {response.text[:200]}...")
         if response.status_code != 200:
+            print(f"Reply request failed with status {response.status_code}")
             return all_replies
 
         data = response.json()
+        reply_list = data.get("comments", [])
+        if reply_list is None:
+            print(f"No replies found for comment {comment_id}")
+            return all_replies
 
-    except requests.RequestException:
-        return all_replies
-    except ValueError:
-        return all_replies
+        for reply in reply_list:
+            reply_details = extract_comment_details(post_id, reply)
+            all_replies.append(reply_details)
 
-    reply_list = data.get("comments", [])
-    for reply in reply_list:
-        reply_details = extract_comment_details(post_id, reply)
-        all_replies.append(reply_details)
+        # Handle pagination
+        has_more = data.get("has_more", 0)
+        if has_more:
+            next_cursor = data.get("cursor", cursor + 20)
+            return fetch_replies(post_id, comment_id, tiktok_account, next_cursor, all_replies)
+
+    except requests.RequestException as e:
+        print(f"Reply request error: {e}")
+        return all_replies
+    except ValueError as e:
+        print(f"Reply JSON decode error: {e}")
+        return all_replies
 
     return all_replies
 
-
-def fetch_comments(post_id, cursor=0, all_comments=None):
+def fetch_comments(post_id, tiktok_account, cursor=0, all_comments=None):
     """
-    Récupère récursivement les commentaires et leurs réponses.
+    Recursively fetches comments and their replies.
     """
     if all_comments is None:
         all_comments = []
 
     signed_url, user_agent = validate_comment_url(post_id, cursor)
     if not signed_url:
+        print("Failed to generate signed URL")
         return all_comments
 
-    headers = {"User-Agent": user_agent}
+    # Construct Referer using tiktok_account and post_id
+    referer = f"{tiktok_account.rstrip('/')}/video/{post_id}"
+    print(referer)
+    headers = {
+        "User-Agent": user_agent or USER_AGENT,
+        "Referer": referer
+    }
 
     try:
         response = requests.get(signed_url, headers=headers)
+        print(f"Comment fetch status: {response.status_code}")
+        print(f"Comment fetch response: {response.text[:200]}...")
         if response.status_code != 200:
+            print(f"Comment request failed with status {response.status_code}")
             return all_comments
 
         data = response.json()
+        comment_list = data.get("comments", [])
+        if comment_list is None:
+            print(f"No comments found for post {post_id}. Response: {data}")
+            status_msg = data.get("status_msg", "")
+            if status_msg:
+                print(f"API status message: {status_msg}")
+            has_more = data.get("has_more", 0)
+            if has_more:
+                next_cursor = data.get("cursor", cursor + 20)
+                return fetch_comments(post_id, tiktok_account, next_cursor, all_comments)
+            return all_comments
 
-    except requests.RequestException:
+        for comment_info in comment_list:
+            comment_details = extract_comment_details(post_id, comment_info)
+            if comment_details["replyCount"] > 0:
+                print(f"Fetching replies for comment {comment_details['commentId']}...")
+                comment_details["replies"] = fetch_replies(post_id, comment_details["commentId"], tiktok_account)
+
+            all_comments.append(comment_details)
+
+        # Handle pagination
+        has_more = data.get("has_more", 0)
+        if has_more:
+            next_cursor = data.get("cursor", cursor + 20)
+            return fetch_comments(post_id, tiktok_account, next_cursor, all_comments)
+
+    except requests.RequestException as e:
+        print(f"Comment request error: {e}")
         return all_comments
-    except ValueError:
+    except ValueError as e:
+        print(f"Comment JSON decode error: {e}")
         return all_comments
-
-    comment_list = data.get("comments", [])
-    for comment_info in comment_list:
-        comment_details = extract_comment_details(post_id, comment_info)
-        if comment_details["replyCount"] > 0:
-            print(f"Fetching replies for {comment_details['commentId']}...")
-            comment_details["replies"] = fetch_replies(
-                post_id, comment_details["commentId"]
-            )
-
-        all_comments.append(comment_details)
 
     return all_comments
 
-
-""" # Exemple d'utilisation
+""" # Example usage
 if __name__ == "__main__":
-    post_id = "7469424380787854614"
+    post_id = "7497745342759292182"
+    tiktok_account = "https://www.tiktok.com/@wahraniiaaa"
     print("Fetching comments and replies...\n")
 
-    comments = fetch_comments(post_id)
+    comments = fetch_comments(post_id, tiktok_account)
 
     if comments:
         for comment in comments:
             print(f"💬 {comment['userNickname']} : {comment['text']} - {comment['likeCount']} likes")
             for reply in comment["replies"]:
-                print(f"   ↳ {reply['userNickname']} : {reply['text']} - {reply['likeCount']} likes") """
+                print(f"   ↳ {reply['userNickname']} : {reply['text']} - {reply['likeCount']} likes")
+    else:
+        print("No comments fetched.") """
