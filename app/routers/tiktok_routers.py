@@ -12,7 +12,6 @@ from app.utils.excel_utils import save_to_excel
 
 router = APIRouter()
 
-
 @router.post("/scrape_tiktok_data/")
 async def scrape_tiktok_data(
     background_tasks: BackgroundTasks,
@@ -55,7 +54,8 @@ async def scrape_tiktok_data(
                 all_comments = []
                 for post in posts:
                     if post.get("commentCount"):
-                        comments = fetch_comments(post["id"])
+                        # Passer tiktok_account à fetch_comments
+                        comments = fetch_comments(post["id"], tiktok_account)
                         all_comments.extend(comments)
 
                 print(f"✅ Total des commentaires récupérés : {len(all_comments)}")
