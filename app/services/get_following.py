@@ -144,7 +144,6 @@ def fetch_following(secUid, minCursor=0, all_following=None):
         return all_following
 
 
-
 """ if __name__ == "__main__":
     secUid = "MS4wLjABAAAAI8OMuXkz6jllqzW1aGEVKwyJ-z1rKL326qbZ4DOKFZbRO1ASMHVaqgZ6tEZFk22d"
     print("Fetching following users...\n")

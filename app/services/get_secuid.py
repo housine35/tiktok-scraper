@@ -3,6 +3,7 @@ import re
 
 
 def get_secuid(tiktok_url):
+    print(tiktok_url)
     # Curl command with headers and compressed content handling
     curl_command = [
         "curl",
@@ -36,7 +37,9 @@ def get_secuid(tiktok_url):
 
         # Decode the response using 'latin1' to avoid UTF-8 decoding errors (fallback for non-UTF-8 characters)
         response_text = result.stdout.decode("utf-8", errors="replace")
-
+        print(
+            f"Response Text: {response_text[:500]}..."
+        )  # Print first 500 characters for debugging
         # Extract secUid using regex
         match = re.search(r'"verified":.*?,"secUid":"(.*?)",', response_text)
         if match:
